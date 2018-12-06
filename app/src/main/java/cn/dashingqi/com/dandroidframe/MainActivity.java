@@ -6,11 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import cn.dashingqi.com.dandroidframe.interfaces.OnPermissionListener;
 import cn.dashingqi.com.dandroidframe.util.DPermissionUtils;
+import cn.dashingqi.com.dandroidframe.util.SpUtils.DShareUtils;
+import cn.dashingqi.com.dandroidframe.util.SpUtils.SpKeys;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String[] permissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -22,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("TAG","onCreate");
+        Log.d("TAG", "onCreate");
         DPermissionUtils.requestPermissionsWithResult(this, 1, permissions, new OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -35,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 DPermissionUtils.showTipsDialog(MainActivity.this);
             }
         });
+
+        findViewById(R.id.btn_add_value).setOnClickListener(this);
+        findViewById(R.id.btn_get_value).setOnClickListener(this);
     }
+
 
     @Override
     protected void onResume() {
@@ -50,5 +57,33 @@ public class MainActivity extends AppCompatActivity {
         DPermissionUtils.onRequestPermissionResult(requestCode, permissions, grantResults);
         Log.d("TAG", "onRequestPermissionsResult");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_add_value:
+                addValue();
+                break;
+            case R.id.btn_get_value:
+                getValue();
+                break;
+        }
+    }
+
+    private void addValue(){
+        DShareUtils.putValue(SpKeys.TEST_ONE,"DashingQi");
+        DShareUtils.putValue(SpKeys.TEST_TWO,true);
+        DShareUtils.putValue(SpKeys.TEST_THREE,1.5f);
+    }
+
+    private void getValue(){
+        String strValue = DShareUtils.getStringValue(SpKeys.TEST_ONE, "");
+        Log.d("TAG",strValue);
+        boolean intValue = DShareUtils.getBooleanValue(SpKeys.TEST_TWO,false);
+        Log.d("TAG",intValue+"");
+        float floatValue = DShareUtils.getFloatValue(SpKeys.TEST_THREE,0.0f);
+        Log.d("TAG",floatValue+"");
+
     }
 }
