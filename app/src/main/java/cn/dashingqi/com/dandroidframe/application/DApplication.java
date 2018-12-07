@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import cn.dashingqi.com.dandroidframe.util.SpUtils.DShareUtils;
+import cn.dashingqi.com.dandroidframe.util.log.DLoggerUtils;
 
 /**
  * @ProjectName: DAndroidFrame
@@ -26,6 +27,8 @@ public class DApplication extends Application {
         instance = getApplicationContext();
         //初始化SharedPreference
         DShareUtils.init(instance);
+        //初始化Logger
+        DLoggerUtils.LoggerInit();
 
     }
 

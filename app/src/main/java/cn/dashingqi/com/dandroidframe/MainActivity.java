@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.logging.Logger;
+
 import cn.dashingqi.com.dandroidframe.interfaces.OnPermissionListener;
 import cn.dashingqi.com.dandroidframe.util.DPermissionUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.DShareUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.SpKeys;
+import cn.dashingqi.com.dandroidframe.util.log.DLoggerUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    public final String TAG = MainActivity.class.getSimpleName();
 
     private String[] permissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -25,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("TAG", "onCreate");
+
+        DLoggerUtils.i(TAG, "onCreate");
         DPermissionUtils.requestPermissionsWithResult(this, 1, permissions, new OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -47,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("TAG", "onResume");
+       DLoggerUtils.d(TAG,"onResume");
 
 
     }
@@ -71,19 +76,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void addValue(){
-        DShareUtils.putValue(SpKeys.TEST_ONE,"DashingQi");
-        DShareUtils.putValue(SpKeys.TEST_TWO,true);
-        DShareUtils.putValue(SpKeys.TEST_THREE,1.5f);
+    private void addValue() {
+        DShareUtils.putValue(SpKeys.TEST_ONE, "DashingQi");
+        DShareUtils.putValue(SpKeys.TEST_TWO, true);
+        DShareUtils.putValue(SpKeys.TEST_THREE, 1.5f);
     }
 
-    private void getValue(){
+    private void getValue() {
         String strValue = DShareUtils.getStringValue(SpKeys.TEST_ONE, "");
-        Log.d("TAG",strValue);
-        boolean intValue = DShareUtils.getBooleanValue(SpKeys.TEST_TWO,false);
-        Log.d("TAG",intValue+"");
-        float floatValue = DShareUtils.getFloatValue(SpKeys.TEST_THREE,0.0f);
-        Log.d("TAG",floatValue+"");
+        DLoggerUtils.d(TAG, strValue);
+        boolean intValue = DShareUtils.getBooleanValue(SpKeys.TEST_TWO, false);
+        DLoggerUtils.d(TAG, intValue);
+        float floatValue = DShareUtils.getFloatValue(SpKeys.TEST_THREE, 0.0f);
+        DLoggerUtils.d(TAG, floatValue);
 
     }
 }
