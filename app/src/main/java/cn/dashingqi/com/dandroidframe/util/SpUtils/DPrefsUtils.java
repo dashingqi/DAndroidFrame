@@ -11,15 +11,26 @@ import com.google.common.collect.ImmutableMap;
 /**
  * 封装的Sp工具类
  */
-public class DShareUtils {
+public class DPrefsUtils {
 
     private static Context applicationContext;
     private static SharedPreferences sp;
-    private static String SpName = "DashingQi.xml";
+    private static String SpName = "DashingQi";
+
+    private static String SpDefaultNameKey ="_preferences";
+    private final SharedPreferences sharedPreferences;
+
+    private DPrefsUtils(Context context){
+        sharedPreferences = context.getSharedPreferences(context.getPackageName() + SpDefaultNameKey, Context.MODE_PRIVATE);
+    }
+
+    private DPrefsUtils(Context context,String SpName){
+        sharedPreferences = context.getSharedPreferences(SpName, Context.MODE_PRIVATE);
+    }
 
     public static void init(Context context) {
         if (applicationContext == null) {
-            synchronized (DShareUtils.class) {
+            synchronized (DPrefsUtils.class) {
                 if (applicationContext == null)
                     applicationContext = context.getApplicationContext();
             }

@@ -3,7 +3,7 @@ package cn.dashingqi.com.dandroidframe.application;
 import android.app.Application;
 import android.content.Context;
 
-import cn.dashingqi.com.dandroidframe.util.SpUtils.DShareUtils;
+import cn.dashingqi.com.dandroidframe.util.SpUtils.DPrefsUtils;
 import cn.dashingqi.com.dandroidframe.util.log.DLoggerUtils;
 
 /**
@@ -26,7 +26,7 @@ public class DApplication extends Application {
         super.onCreate();
         instance = getApplicationContext();
         //初始化SharedPreference
-        DShareUtils.init(instance);
+        DPrefsUtils.init(instance);
         //初始化Logger
         DLoggerUtils.LoggerInit();
 

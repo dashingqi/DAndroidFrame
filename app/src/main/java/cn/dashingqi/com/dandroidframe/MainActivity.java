@@ -1,18 +1,15 @@
 package cn.dashingqi.com.dandroidframe;
 
 import android.Manifest;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import java.util.logging.Logger;
-
 import cn.dashingqi.com.dandroidframe.interfaces.OnPermissionListener;
 import cn.dashingqi.com.dandroidframe.util.DPermissionUtils;
-import cn.dashingqi.com.dandroidframe.util.SpUtils.DShareUtils;
+import cn.dashingqi.com.dandroidframe.util.SpUtils.DPrefsUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.SpKeys;
 import cn.dashingqi.com.dandroidframe.util.log.DLoggerUtils;
 
@@ -77,17 +74,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addValue() {
-        DShareUtils.putValue(SpKeys.TEST_ONE, "DashingQi");
-        DShareUtils.putValue(SpKeys.TEST_TWO, true);
-        DShareUtils.putValue(SpKeys.TEST_THREE, 1.5f);
+        DPrefsUtils.putValue(SpKeys.TEST_ONE, "DashingQi");
+        DPrefsUtils.putValue(SpKeys.TEST_TWO, true);
+        DPrefsUtils.putValue(SpKeys.TEST_THREE, 1.5f);
     }
 
     private void getValue() {
-        String strValue = DShareUtils.getStringValue(SpKeys.TEST_ONE, "");
+        String strValue = DPrefsUtils.getStringValue(SpKeys.TEST_ONE, "");
         DLoggerUtils.d(TAG, strValue);
-        boolean intValue = DShareUtils.getBooleanValue(SpKeys.TEST_TWO, false);
+        boolean intValue = DPrefsUtils.getBooleanValue(SpKeys.TEST_TWO, false);
         DLoggerUtils.d(TAG, intValue);
-        float floatValue = DShareUtils.getFloatValue(SpKeys.TEST_THREE, 0.0f);
+        float floatValue = DPrefsUtils.getFloatValue(SpKeys.TEST_THREE, 0.0f);
         DLoggerUtils.d(TAG, floatValue);
 
     }
