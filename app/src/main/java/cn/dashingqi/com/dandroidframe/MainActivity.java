@@ -1,6 +1,7 @@
 package cn.dashingqi.com.dandroidframe;
 
 import android.Manifest;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.btn_add_value).setOnClickListener(this);
         findViewById(R.id.btn_get_value).setOnClickListener(this);
+        findViewById(R.id.btn_jump_second).setOnClickListener(this);
     }
 
 
@@ -70,7 +72,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_get_value:
                 getValue();
                 break;
+            case R.id.btn_jump_second:
+                jumpSecondActivity();
+                break;
         }
+    }
+
+    private void jumpSecondActivity() {
+        startActivity(new Intent(this,SecondActivity.class));
     }
 
     private void addValue() {

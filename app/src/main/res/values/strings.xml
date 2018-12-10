@@ -2,4 +2,5 @@
     <string name="app_name">DAndroidFrame</string>
     <string name="btn_add_value">add value</string>
     <string name="btn_get_value">get value</string>
+    <string name="btn_jump_second">jump second</string>
 </resources>
