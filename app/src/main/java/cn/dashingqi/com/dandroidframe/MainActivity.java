@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import cn.dashingqi.com.dandroidframe.activity.BaseActivity;
 import cn.dashingqi.com.dandroidframe.interfaces.OnPermissionListener;
 import cn.dashingqi.com.dandroidframe.util.DPermissionUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.DPrefsUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.SpKeys;
 import cn.dashingqi.com.dandroidframe.util.log.DLoggerUtils;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     public final String TAG = MainActivity.class.getSimpleName();
 
     private String[] permissions = {
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         DLoggerUtils.i(TAG, "onCreate");
         DPermissionUtils.requestPermissionsWithResult(this, 1, permissions, new OnPermissionListener() {
@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_add_value).setOnClickListener(this);
         findViewById(R.id.btn_get_value).setOnClickListener(this);
         findViewById(R.id.btn_jump_second).setOnClickListener(this);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
 
 
