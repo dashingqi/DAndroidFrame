@@ -52,6 +52,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return R.layout.activity_main;
     }
 
+    @Override
+    public void initView() {
+        configStatusBar(getResources().getColor(R.color.colorPrimary));
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
 
     @Override
     protected void onResume() {
