@@ -14,6 +14,7 @@ import cn.dashingqi.com.dandroidframe.util.DPermissionUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.DPrefsUtils;
 import cn.dashingqi.com.dandroidframe.util.SpUtils.SpKeys;
 import cn.dashingqi.com.dandroidframe.util.log.DLoggerUtils;
+import cn.dashingqi.com.dandroidframe.util.theme.StatusBarUtils;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     public final String TAG = MainActivity.class.getSimpleName();
@@ -54,7 +55,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
-        configStatusBar(getResources().getColor(R.color.colorPrimary));
+        StatusBarUtils.configStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
     }
 
     @Override

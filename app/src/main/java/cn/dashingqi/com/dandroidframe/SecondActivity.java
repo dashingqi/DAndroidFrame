@@ -8,10 +8,11 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.dashingqi.com.dandroidframe.activity.BaseActivity;
 import cn.dashingqi.com.dandroidframe.fragment.TestFragment;
 import cn.dashingqi.com.dandroidframe.ui.widget.DTabHeard;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends BaseActivity {
 
     private DTabHeard mDTabHeard;
     private List<String> titleList = new ArrayList<>();
@@ -20,12 +21,16 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
         initView();
         initData();
     }
 
-    private void initData() {
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_second;
+    }
+
+    public void initData() {
         titleList.add("今天");
         titleList.add("明天");
 
@@ -36,7 +41,7 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
-    private void initView() {
+    public void initView() {
         mDTabHeard = findViewById(R.id.mDTabHeard);
     }
 }
